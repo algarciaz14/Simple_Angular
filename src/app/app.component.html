@@ -1,0 +1,54 @@
+<nav class="navbar navbar-dark bg-success-subtle justify-content-center">
+  <a class="navbar-brand fw-bold" href="/">
+    GRUPO A&J
+  </a>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <!-- Datos en una tabla -->
+    <div class="col-md-8 mt-4">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>País</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employeeArray" (click)="openForEdit(employee)" [class.table-active]="employee == selectedEmployee">
+            <td><span class="badge badge-primary">{{ employee.id }}</span></td>
+            <td><strong>{{ employee.name }}</strong></td>
+            <td><strong>{{ employee.country }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Formulario para añadir o editar empleados -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            Insertar un nuevo empleado
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedEmployee.name" placeholder="Insertar Nombre" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedEmployee.country" placeholder="Insertar País" class="form-control">
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary">Enviar</button>
+          <button *ngIf="selectedEmployee.id != 0" class="btn btn-danger" (click)="delete()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagen del logo al lado de la tabla -->
+    <div class="col-md-4 mt-4">
+      <img class="logo" width="300" alt="Angular Logo" src="assets\logo.jpg"/>
+      <img class="logo2" width="300" alt="Angular Logo" src="assets\logo2.jpg"/>
+    </div>
+    
+    
+  </div>
+</div>
